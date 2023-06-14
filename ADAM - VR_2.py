@@ -2,9 +2,14 @@ import speech_recognition as sr
 import pyttsx3
 import requests
 import json
+import socket
 
 class Adam:
     def __init__(self):
+        if check_internet_connection():
+            speak("All Systems online")
+        else:
+            speak("cannot connect to the internet")
         self.recognizer = sr.Recognizer()
         self.speaker = pyttsx3.init()
 
@@ -54,9 +59,34 @@ class Adam:
 
         return "Sorry, I couldn't retrieve the latest news headlines."
 
+    
     def task_management(self, task):
-        # Implement task management functionality here
-        return f"Task '{task}' has been added and will be managed for you."
+        command = task.lower().split()
+        action = command[0]
+        app_name = " ".join(command[1:])
+
+        try:
+            if action == "open":
+                subprocess.Popen(app_name)
+                self.speak(f"{app_name} has been opened.")
+            elif action == "close":
+                subprocess.call(["taskkill", "/f", "/im", app_name])
+                self.speak(f"{app_name} has been closed.")
+            else:
+                self.speak("Sorry, I couldn't understand the task command.")
+        except Exception as e:
+            self.speak(f"An error occurred: {str(e)}")
+    
+
+    def check_internet_connection():
+        try:
+            # Create a socket object to establish a connection
+            socket.create_connection(("www.google.com", 80))
+            return True
+        except OSError:
+            pass
+        return False
+
 
     def start(self):
         self.speak("Hello, I'm Adam, your virtual helping bot. How can I assist you today?")
@@ -91,7 +121,6 @@ class Adam:
             else:
                 self.speak("Sorry, I couldn't understand your request.")
 if __name__=="__main__":
-  # Create an instance of Adam and start the interaction
-  adam_bot = Adam()
-  adam_bot.start()
-  
+    # Create an instance of Adam and start the interaction
+    adam_bot = Adam()
+    adam_bot.start()
