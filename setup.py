@@ -1,34 +1,40 @@
-# create a file which will setup the phinex program to be ready to run on a single click.
-
 import os
-import importlib.util
-import sys
-class setup_invr:
+import subprocess
 
-    def __init__(self):
-        self.modules_to_be_used=['pyttsx3','sockets','SpeechRecognition','PyAudio']
+def create_directory(directory):
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+        print(f"Created directory: {directory}")
 
-    def install(self):
+def create_virtual_environment(directory):
+    subprocess.run(["python", "-m", "venv", directory])
+    print("Virtual environment created.")
 
-        for module in self.modules_to_be_used:
-            name=module
-            if name in sys.modules:
-                print(f"{name!r} already in sys.modules")
-            elif (spec := importlib.util.find_spec(name)) is not None:
-                module = importlib.util.module_from_spec(spec)
-                sys.modules[name] = module
-                spec.loader.exec_module(module)
-                print(f"------------------>     {name!r} has been installed")
-            else:
-                print(f"can't find the {name!r} module")
+def activate_virtual_environment(directory):
+    if os.name == "nt":
+        activate_script = os.path.join(directory, "Scripts", "activate")
+    else:
+        activate_script = os.path.join(directory, "bin", "activate")
+    subprocess.run(activate_script, shell=True)
+    print("Virtual environment activated.")
 
-                try:
-                    print(f"Trying to install the {name} module.")
-                    os.system(f'pip install {name}')
-                except:
-                    print("------------------>     Try installing {name} module manually.")
+def install_dependencies(requirements_file):
+    subprocess.run(["pip", "install", "-r", requirements_file])
+    print("Dependencies installed.")
 
+def setup_adam_bot():
+    project_directory = "adam_bot"
+    virtualenv_directory = "env"
+    requirements_file = "requirements.txt"
 
+    create_directory(project_directory)
+    create_virtual_environment(virtualenv_directory)
+    activate_virtual_environment(virtualenv_directory)
+    install_dependencies(requirements_file)
 
-# obj=setup_invr()
-# obj.install()
+    # Additional setup tasks can be added here
+
+    print("Adam bot setup completed.")
+
+if __name__ == "__main__":
+    setup_adam_bot()
