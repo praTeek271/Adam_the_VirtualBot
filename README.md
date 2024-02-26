@@ -10,6 +10,10 @@ This Repo consists of the following files :
 - requirements.txt
 - setup.py
 
+---
+## Preview of project : 
+
+<img src="https://github.com/praTeek271/Adam_the_VirtualBot/blob/deb2a18ecc9a66391b308106743324e9b75bacff/adam_UI.gif">
 
 
 
