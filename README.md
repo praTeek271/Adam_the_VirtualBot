@@ -3,6 +3,7 @@ This Repo consists of the following files :
 - .git
 - ADAM - VR_1.py
 - ADAM - VR_2.py
+- adam_UI.gif
 - LICENSE
 - PyAudio-0.2.11-cp310-cp310-win_amd64.whl
 - PyAudio-0.2.11.win-amd64-py3.7.msi
@@ -10,10 +11,6 @@ This Repo consists of the following files :
 - requirements.txt
 - setup.py
 
----
-## Preview of project : 
-
-<img src="https://github.com/praTeek271/Adam_the_VirtualBot/blob/deb2a18ecc9a66391b308106743324e9b75bacff/adam_UI.gif">
 
 
 
@@ -24,4 +21,4 @@ This Repo consists of the following files :
 <br>
 
 
-- automated commit
+- supports linux
