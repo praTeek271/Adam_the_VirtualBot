@@ -21,4 +21,4 @@ This Repo consists of the following files :
 <br>
 
 
-- uses os module
+- uses time module
