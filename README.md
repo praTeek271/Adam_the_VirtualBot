@@ -1,4 +1,4 @@
-# Adam_the_VirtualBot
+# adam_the_virtualbot
 This Repo consists of the following files :
 - .git
 - ADAM - VR_1.py
@@ -23,4 +23,4 @@ This Repo consists of the following files :
 <br>
 
 
-- uses git
+- uses random module
